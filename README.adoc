@@ -125,7 +125,7 @@ git config --global color.ui true
 
 A few tasks in git require external tools.
 The most important is a text editor: which one you use will depend on your operating system, what you have installed, and your personal preferences.
-`vim` may be the default, and is very powerful but tricky to start to use.
+`vim` may be the default, and is very powerful but https://stackoverflow.com/questions/11828270/how-do-i-exit-the-vim-editor[tricky to start to use].
 `nano` is installed on many unix-like systems and is simpler for basic tasks.
 Windows users may want to keep things simple with `notepad`.
 You can set it with `git config --global core.editor <my_favourite_editor>`
