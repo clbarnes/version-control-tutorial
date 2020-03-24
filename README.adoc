@@ -209,6 +209,7 @@ These are more advanced tasks and out of scope for this tutorial.
 * https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow[Gitflow], a suggested workflow/ branching model for collaborative work 
 * https://education.github.com/git-cheat-sheet-education.pdf[GitHub's git cheatsheet]
 * https://guides.github.com/activities/hello-world/[GitHub Hello World], a brief introduction to working with git/GitHub and entry point into GitHub's documentation
+* https://xkcd.com/1597/[Relevant xkcd]
 
 == Related topics
 
