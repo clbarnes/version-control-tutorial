@@ -68,9 +68,9 @@ These are each stored in full (although as an implementation detail, files which
 Each snapshot knows its parent snaphots (the commits immediately prior).
 Each snapshot also has an author and a commit message.
 
-.Staging
+.Index
 Files are not tracked until you add them to the tracked list.
-Tracked files which are changed will not be committed unless you stage them.
+Tracked files which are changed will not be committed unless you add them to the index (also referred to as the "staging area").
 This allows you to make a lot of changes in one go, but then put changes to different files in different commits.
 
 .References
@@ -84,7 +84,36 @@ You can push your changes onto a git repository which lives elsewhere (e.g. on a
 You can also pull changes in that repository onto your local repository.
 There is no interaction between different repos except when you tell them to interact, and neither is the "one true version": the concepts of original/ backup etc. are left to the user.
 
+NOTE: GitHub is not git.
+It is just the most ubiquitous one of the many organisations which provide somewhere to host a remote repository, and also provides some tooling around it.
+You can use git without GitHub, and your choice to use GitHub as a remote backup and/or the permanent source of truth for your project is purely your perspective as a human, not git's (which treats all repos as equally valid).
+
 == Basic usage
+
+=== First-time configuration
+
+You need to tell git who you are.
+These details are purely used to identify you with your contributions, not for authentication.
+
+----
+git config --global user.name "My Name"
+git config --global user.email "my.email@host.com"
+----
+
+Also, by default you should should have colourful output, but just in case:
+
+----
+git config --global color.ui true
+----
+
+A few tasks in git require external tools.
+The most important is a text editor: which one you use will depend on your operating system, what you have installed, and your personal preferences.
+`vim` may be the default, and is very powerful but tricky to start to use.
+`nano` is installed on many unix-like systems and is simpler for basic tasks.
+Windows users may want to keep things simple with `notepad`.
+You can set it with `git config --global core.editor <my_favourite_editor>`
+
+=== Common commands
 
 * `git --help`: 
 Show help messages. 
@@ -96,10 +125,10 @@ Show which files are changed, tracked, and staged in the working directory.
 * `git log`:
 List all of the prior commits on this branch, with their authors, timestamps, messages etc.
 * `git add <file_or_directory>`:
-Add the given file to the staging area.
+Add the given file to the index, staging it.
 If the file was previously untracked, it will be added to the tracking list.
 * `git commit`:
-Commit the staged files.
+Commit the indexed changes.
 A text editor will be opened for you to type a message about the changes this commit represents.
 Abort the commit by saving an empty message.
 * `git checkout <reference>`:
@@ -107,6 +136,8 @@ Change your current working directory to the snapshot saved in the given commit,
 * `git branch <branch_name>`:
 Make a branch which can exist in parallel with the original branch.
 Commits made to this branch can be merged back at some point in the future.
+* `git diff`:
+Look at the differences between some combination of your working directory, the index, a file, or a commit.
 * `git push <remote_name>`:
 Push your changes from a particular branch onto the given remote.
 * `git pull <remote_name>`:
@@ -116,12 +147,14 @@ Pull changes from a particular remote into your current branch.
 
 === Starting a new project
 
-. Make new directory, and navigate into it
-. Initialise git: `git init`
-. Make some files
+. Make new directory, and navigate into it.
+. Initialise git: `git init`.
+. Make some files.
 . Track and stage those files: `git add my_file.txt`, `git add path/to/directory` etc.
 . Commit those files: `git commit`, type and save an informative message.
-. Make and commit a few more changes, and look at the `git log`
+. Make and commit a few more changes.
+Look at the `git diff` before ``git add``ing your changes.
+Look at the `git log` after committing them.
 . Copy the long alphanumeric string at the top of a commit, and `git checkout <that_string>`, to have a look at the repository at that moment in time (make sure you commit your changes first!); `git checkout <your_branch>` to go back.
 The default branch is called `master`.
 
@@ -129,7 +162,7 @@ The default branch is called `master`.
 
 . Find the GitHub page for that project
 . Click "Fork" in the top right to clone their repository into your GitHub account
-. In your fork, click "Clone or download" and copy the URL in the popup ("Use HTTPs" if you have the option)
+. In your fork, click "Clone or download" and copy the URL in the popup ("Use HTTPS" if you have the option)
 . `git clone <that_url>` will clone your repository onto your computer, in a directory with the same name as the project
 . Make some changes, `git add` them, and `git commit` them.
 . `git push` those changes up to your remote repository (by default, it will be called `origin`).
@@ -139,6 +172,24 @@ On GitHub, PRs can be reviewed, commented on, and updated before the merge.
 == Things to remember
 
 * Large binary files should be kept out of the git repository: consider adding them to the `.gitignore`
-* Git detects text changes by line: formats like LaTeX, Asciidoc, and (most flavours of) Markdown won't break a paragraph without a double newline, so put each sentence on a new line. This also plays very nicely with good text editors.
-* Git is a tool. How you use it, which repos you treat as a source of truth, how you handle merges etc. are up to you.
+* Git detects text changes by line: formats like LaTeX, Asciidoc, and (most flavours of) Markdown won't break a paragraph without a double newline, so put each sentence on a new line.
+This also plays very nicely with good text editors.
+* Git is a tool.
+How you use it, which repos you treat as a source of truth, how you handle merges etc. are up to you.
+* Options make simple tasks more ergonomic, e.g.
+`git commit -m "My message"` for short commit ``m``essages, 
+`git checkout -b my_new_branch` to make and check out a new ``b``ranch in one go,
+`git add -u` to add all ``u``pdated files (i.e. those already being tracked).
+* Interacting with a remote repository is much easier using SSH, although it's more complicated to set up.
+https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh[GitHub's documentation] is excellent.
+* It is possible, and sometimes necessary, to manually merge 2 or 3 revisions, to rewrite git history, or to rebase one chain of commits onto another branch (e.g. if the master branch changes while you're working on a separate branch).
+These are more advanced tasks and out of scope for this tutorial.
+
+== Links
+
+* https://git-scm.com/docs/[Official git docs]: dense but authoritative
+* https://missing.csail.mit.edu/2020/version-control/[missing-semester/version-control], an introduction to some git concepts
+* https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow[Gitflow], a suggested workflow/ branching model for collaborative work 
+* https://education.github.com/git-cheat-sheet-education.pdf[GitHub's git cheatsheet]
+* https://guides.github.com/activities/hello-world/[GitHub Hello World], a brief introduction to working with git/GitHub and entry point into GitHub's documentation
 
