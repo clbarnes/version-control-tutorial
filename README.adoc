@@ -4,6 +4,8 @@
 :revdate: {docdate}
 :toc: left
 
+This page is also hosted on https://clbarnes.github.io/version-control-tutorial/[GitHub.io].
+
 == Before the session
 
 * https://github.com/join[Make a GitHub account], if you don't have one already
@@ -38,19 +40,23 @@ Keep code, data, and figures in sync with each other, rather than thinking "whic
 
 Anything plain text!
 
-* Manuscripts
-** Markdown
-** Asciidoc
-** LaTeX
-** etc.
-* Figures
-** SVG
-** TikZ
-** etc.
-* Data
-** CSV
-** JSON
-** etc.
+* Manuscripts (
+https://pandoc.org/MANUAL.html#pandocs-markdown[Markdown],
+https://asciidoctor.org/[Asciidoc],
+https://www.latex-project.org/[LaTeX],
+etc.
+)
+* Figures (
+https://en.wikipedia.org/wiki/Scalable_Vector_Graphics[SVG],
+https://en.wikibooks.org/wiki/LaTeX/PGF/TikZ[TikZ],
+etc.
+)
+* Data (
+https://tools.ietf.org/html/rfc4180[CSV],
+https://en.wikipedia.org/wiki/JSON[JSON],
+https://en.wikipedia.org/wiki/XML[XML],
+etc.
+)
 * Code
 * Config files
 
@@ -203,4 +209,10 @@ These are more advanced tasks and out of scope for this tutorial.
 * https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow[Gitflow], a suggested workflow/ branching model for collaborative work 
 * https://education.github.com/git-cheat-sheet-education.pdf[GitHub's git cheatsheet]
 * https://guides.github.com/activities/hello-world/[GitHub Hello World], a brief introduction to working with git/GitHub and entry point into GitHub's documentation
+
+== Related topics
+
+* Sanitising data for optimal version control
+* Document creation with plaintext
+* The ecosystem of https://missing.csail.mit.edu/2020/data-wrangling/[text-mangling tools]
 
