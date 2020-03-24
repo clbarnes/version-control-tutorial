@@ -136,3 +136,9 @@ The default branch is called `master`.
 . On the GitHub page of your project, request that the original developer pulls your changes into their repository by making a Pull Request.
 On GitHub, PRs can be reviewed, commented on, and updated before the merge.
 
+== Things to remember
+
+* Large binary files should be kept out of the git repository: consider adding them to the `.gitignore`
+* Git detects text changes by line: formats like LaTeX, Asciidoc, and (most flavours of) Markdown won't break a paragraph without a double newline, so put each sentence on a new line. This also plays very nicely with good text editors.
+* Git is a tool. How you use it, which repos you treat as a source of truth, how you handle merges etc. are up to you.
+
