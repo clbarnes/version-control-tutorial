@@ -1,4 +1,8 @@
 = Version control tutorial
+:author: Chris L. Barnes
+:email: chrislloydbarnes@gmail.com
+:revdate: {docdate}
+:toc: left
 
 == Before the session
 
