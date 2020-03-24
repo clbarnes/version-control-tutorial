@@ -8,6 +8,7 @@
 ** Mac users, it may be installed if you have Xcode. 
 If you have https://brew.sh/[homebrew], just `brew install git`
 ** Linux users, you probably already have it, or can install it through your package manager
+** Open a terminal (or git bash, on windows) and enter `git` to make sure it's installed - you should see some help text.
 
 == Why
 
@@ -51,6 +52,12 @@ Anything plain text!
 
 Binary files can be added, but it's best to keep them small and changing infrequently, and you can't track changes at the sub-file resolution.
 For larger binary data, there are git-based/ git-like solutions too (https://git-lfs.github.com/[git-lfs], https://dvc.org/[dvc]).
+
+Besides git, there are other advantages to writing manuscripts and data in plain text:
+less lock-in with any particular software vendor,
+more stable over time,
+more flexible tooling,
+and it separates content from presentation.
 
 == Concepts
 
