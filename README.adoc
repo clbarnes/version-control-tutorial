@@ -1,0 +1,138 @@
+= Version control tutorial
+
+== Before the session
+
+* https://github.com/join[Make a GitHub account], if you don't have one already
+* https://git-scm.com/downloads[Get git], if you haven't already
+** Windows users, make sure you get "git bash" during the installation
+** Mac users, it may be installed if you have Xcode. 
+If you have https://brew.sh/[homebrew], just `brew install git`
+** Linux users, you probably already have it, or can install it through your package manager
+
+== Why
+
+.Duplication
+Your code, data, and manuscripts backed up wherever you want it.
+There is no single source of truth: git is decentralised and every copy can be the master.
+
+.Reproducibility
+Anyone can use the specific version of your project you published on X date, you sent to Y journal, you updated with Z changes.
+
+.Attribution
+Every "save" is assigned to your name and email address, even if someone else takes over the project.
+Your contributions are persisted, and if you need to look up who to ask about a particular change, you can.
+
+.Collaboration
+Git allows multiple people to work on a project simultaneously, with well-defined merge points.
+It makes it easy to see what's changed between each revision.
+
+.Synchronisation
+Keep code, data, and figures in sync with each other, rather than thinking "which version of the code produced this figure?".
+
+== What
+
+Anything plain text!
+
+* Manuscripts
+** Markdown
+** Asciidoc
+** LaTeX
+** etc.
+* Figures
+** SVG
+** TikZ
+** etc.
+* Data
+** CSV
+** JSON
+** etc.
+* Code
+* Config files
+
+Binary files can be added, but it's best to keep them small and changing infrequently, and you can't track changes at the sub-file resolution.
+For larger binary data, there are git-based/ git-like solutions too (https://git-lfs.github.com/[git-lfs], https://dvc.org/[dvc]).
+
+== Concepts
+
+.Working directory / tree
+Your current project as it exists on your machine right now, regardless of git.
+
+.Tracked files
+Files that git cares about versioning.
+Files are not tracked by default: you need to tell git which files to track.
+You can set rules to blanket ignore particular directories, filenames, or extensions, so that they are never tracked.
+
+.Snapshots
+Each git "save point" (commit) is a snapshot of a set of files.
+These are each stored in full (although as an implementation detail, files which don't change are compressed down to nothing).
+Each snapshot knows its parent snaphots (the commits immediately prior).
+Each snapshot also has an author and a commit message.
+
+.Staging
+Files are not tracked until you add them to the tracked list.
+Tracked files which are changed will not be committed unless you stage them.
+This allows you to make a lot of changes in one go, but then put changes to different files in different commits.
+
+.References
+You can refer to git commits in different ways.
+Branches are useful for working in parallel.
+HEAD refers to the commit with no children on your current branch.
+Tags are useful for giving meaning to a commit (e.g. a released version).
+
+.Remotes
+You can push your changes onto a git repository which lives elsewhere (e.g. on another computer, or on GitHub).
+You can also pull changes in that repository onto your local repository.
+There is no interaction between different repos except when you tell them to interact, and neither is the "one true version": the concepts of original/ backup etc. are left to the user.
+
+== Basic usage
+
+* `git --help`: 
+Show help messages. 
+Add `--help` to any subcommand to see messages specific to that subcommand.
+* `git init`:
+Make the current working directory a git repository.
+* `git status`:
+Show which files are changed, tracked, and staged in the working directory.
+* `git log`:
+List all of the prior commits on this branch, with their authors, timestamps, messages etc.
+* `git add <file_or_directory>`:
+Add the given file to the staging area.
+If the file was previously untracked, it will be added to the tracking list.
+* `git commit`:
+Commit the staged files.
+A text editor will be opened for you to type a message about the changes this commit represents.
+Abort the commit by saving an empty message.
+* `git checkout <reference>`:
+Change your current working directory to the snapshot saved in the given commit, branch, tag, or HEAD.
+* `git branch <branch_name>`:
+Make a branch which can exist in parallel with the original branch.
+Commits made to this branch can be merged back at some point in the future.
+* `git push <remote_name>`:
+Push your changes from a particular branch onto the given remote.
+* `git pull <remote_name>`:
+Pull changes from a particular remote into your current branch.
+
+== Workflow
+
+=== Starting a new project
+
+. Make new directory, and navigate into it
+. Initialise git: `git init`
+. Make some files
+. Track and stage those files: `git add my_file.txt`, `git add path/to/directory` etc.
+. Commit those files: `git commit`, type and save an informative message.
+. Make and commit a few more changes, and look at the `git log`
+. Copy the long alphanumeric string at the top of a commit, and `git checkout <that_string>`, to have a look at the repository at that moment in time (make sure you commit your changes first!); `git checkout <your_branch>` to go back.
+The default branch is called `master`.
+
+=== Contributing to a project on GitHub
+
+. Find the GitHub page for that project
+. Click "Fork" in the top right to clone their repository into your GitHub account
+. In your fork, click "Clone or download" and copy the URL in the popup ("Use HTTPs" if you have the option)
+. `git clone <that_url>` will clone your repository onto your computer, in a directory with the same name as the project
+. Make some changes, `git add` them, and `git commit` them.
+. `git push` those changes up to your remote repository (by default, it will be called `origin`).
+. On the GitHub page of your project, request that the original developer pulls your changes into their repository by making a Pull Request.
+On GitHub, PRs can be reviewed, commented on, and updated before the merge.
+
