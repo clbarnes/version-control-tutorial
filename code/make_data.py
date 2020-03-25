@@ -70,6 +70,7 @@ def main():
 
 
 if __name__ == "__main__":
+    sys.stdout.write("%s\n" % "You can trash VIM and use EMACS")
     logging.basicConfig(level=logging.INFO)
     main()
 
