@@ -11,7 +11,7 @@ This page is also hosted on https://clbarnes.github.io/version-control-tutorial/
 * https://github.com/join[Make a GitHub account], if you don't have one already
 * https://git-scm.com/downloads[Get git], if you haven't already
 ** Windows users, make sure you get "git bash" during the installation
-** Mac users, it may be installed if you have Xcode. 
+** Mac users, it may be installed if you have Xcode.
 If you have https://brew.sh/[homebrew], just `brew install git`
 ** Linux users, you probably already have it, or can install it through your package manager
 ** Open a terminal (or git bash, on windows) and enter `git` to make sure it's installed - you should see some help text.
@@ -132,8 +132,8 @@ You can set it with `git config --global core.editor <my_favourite_editor>`
 
 === Common commands
 
-* `git --help`: 
-Show help messages. 
+* `git --help`:
+Show help messages.
 Add `--help` to any subcommand to see messages specific to that subcommand.
 * `git init`:
 Make the current working directory a git repository.
@@ -194,7 +194,7 @@ This also plays very nicely with good text editors.
 * Git is a tool.
 How you use it, which repos you treat as a source of truth, how you handle merges etc. are up to you.
 * Options make simple tasks more ergonomic, e.g.
-`git commit -m "My message"` for short commit ``m``essages, 
+`git commit -m "My message"` for short commit ``m``essages,
 `git checkout -b my_new_branch` to make and check out a new ``b``ranch in one go,
 `git add -u` to add all ``u``pdated files (i.e. those already being tracked).
 * Interacting with a remote repository is much easier using SSH, although it's more complicated to set up.
@@ -206,7 +206,7 @@ These are more advanced tasks and out of scope for this tutorial.
 
 * https://git-scm.com/docs/[Official git docs]: dense but authoritative
 * https://missing.csail.mit.edu/2020/version-control/[missing-semester/version-control], an introduction to some git concepts
-* https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow[Gitflow], a suggested workflow/ branching model for collaborative work 
+* https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow[Gitflow], a suggested workflow/ branching model for collaborative work
 * https://education.github.com/git-cheat-sheet-education.pdf[GitHub's git cheatsheet]
 * https://guides.github.com/activities/hello-world/[GitHub Hello World], a brief introduction to working with git/GitHub and entry point into GitHub's documentation
 * https://xkcd.com/1597/[Relevant xkcd]
@@ -216,4 +216,17 @@ These are more advanced tasks and out of scope for this tutorial.
 * Sanitising data for optimal version control
 * Document creation with plaintext
 * The ecosystem of https://missing.csail.mit.edu/2020/data-wrangling/[text-mangling tools]
+
+[appendix]
+== This document
+
+This document can be compiled to a number of targets with https://asciidoctor.org/[Asciidoctor].
+To serve it as a static website:
+
+* Run `asciidoctor -o docs/index.html README.adoc`
+* Add, commit, and push the output up to GitHub
+* On the repo page, go to Settings -> Options -> GitHub Pages -> Source -> master branch /docs folder
+
+[appendix]
+include::AUTHORS.adoc[leveloffset=+1]
 

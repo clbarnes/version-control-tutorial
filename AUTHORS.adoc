@@ -1,0 +1,6 @@
+= Authors
+
+If you contribute meaningfully to this document, feel free to add yourself to the list of authors below.
+
+* Chris L. Barnes (clbarnes)
+
